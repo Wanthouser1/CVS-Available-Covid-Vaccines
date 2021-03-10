@@ -34,7 +34,7 @@ action.move_to_element(element).perform()
 vaccine_is_available = 'Available'
 nj_availability_status = driver.find_element_by_xpath('/html/body/div[2]/div/div[19]/div/div/div/div/div/div[1]/div[2]/div/div/div[2]/div/div[6]/div/div/table').text
 
-
+#function looks to see if table includes any text that says "available". If yes, this triggers sms
 def vaccine_finder():
     if nj_availability_status.find(vaccine_is_available) != -1:
         print("We found you a vaccine!")
@@ -45,7 +45,7 @@ def vaccine_finder():
 
 vaccine_finder()
 
-# Schedules job_function to be run once each minute
+# Schedules job_function to be run once each hour.
 scheduler = BlockingScheduler()
 scheduler.add_job(vaccine_finder, 'interval', hourss=1)
 scheduler.start()
