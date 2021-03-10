@@ -11,19 +11,19 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 def vaccine_finder():
     # Your Account Sid and Auth Token from twilio.com/console
     # and set the environment variables. See http://twil.io/secure
-    account_sid = 'AC18ab2c54648457338e1dda42ef6c6455'
-    auth_token = '1fb4e75ba22595f87b2e4f4b6b82921a'
-    sender = '+14073378595'
-    receiver = '7324842852'
+    account_sid = 'YOUR ACCOUNT SID'
+    auth_token = 'YOUR AUTH TOKEN'
+    sender = 'SENDER NUMBER'
+    receiver = 'RECEIVER NUMBER'
     client = Client(account_sid, auth_token)
 
-    driver = webdriver.Chrome('C:\\Users\\Wanth\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe')
+    driver = webdriver.Chrome('DRIVER LOCATION')
     action = ActionChains(driver)
     driver.get("https://www.cvs.com/immunizations/covid-19-vaccine")
     driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
     time.sleep(3)
 
-    driver.find_element_by_partial_link_text('New Jersey').click()
+    driver.find_element_by_partial_link_text('YOUR STATE').click()
     element = driver.find_element_by_class_name("boxcontainer")
     action.move_to_element(element).perform()
 
