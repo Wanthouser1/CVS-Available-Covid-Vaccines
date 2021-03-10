@@ -8,7 +8,7 @@ from twilio.rest import Client
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 
-# Your Account Sid and Auth Token from twilio.com/console
+# Your Account Sid and Auth Token from twilio.com/console (Need this info to send sms)
 
 account_sid = 'TWILIO SID'
 auth_token = 'TWILIO AUTH TOKEN'
@@ -16,11 +16,15 @@ sender = 'SENDER # FROM TWILIO ACCOUNT'
 receiver = 'RECEIVER NUMBER'
 client = Client(account_sid, auth_token)
 
+# Launch driver, navigate to CVS site, scroll down
+
 driver = webdriver.Chrome('DRIVER LOCATION')
 action = ActionChains(driver)
 driver.get("https://www.cvs.com/immunizations/covid-19-vaccine")
 driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 time.sleep(3)
+
+# Driver finds your state's link and clicks on it
 
 driver.find_element_by_partial_link_text('YOUR STATE').click()
 element = driver.find_element_by_class_name("boxcontainer")
